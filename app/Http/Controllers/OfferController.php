@@ -20,6 +20,7 @@ class OfferController extends Controller
      */
     public function start()
     {
+        return view('offers.start');
     }
 
     /**
