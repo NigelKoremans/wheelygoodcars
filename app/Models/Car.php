@@ -8,6 +8,20 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Car extends Model
 {
+    protected $fillable = [
+        'user_id',
+        'license_plate',
+        'make',
+        'model',
+        'price',
+        'mileage',
+        'seats',
+        'doors',
+        'production_year',
+        'weight',
+        'color',
+    ];
+
     public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
