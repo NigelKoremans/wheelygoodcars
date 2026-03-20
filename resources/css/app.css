@@ -13,3 +13,14 @@
 .text-border{
     text-shadow: var(--tw-text-shadow-color) 1px 1px 0, var(--tw-text-shadow-color) 0px 1px 0 , var(--tw-text-shadow-color) 1px 0px 0, var(--tw-text-shadow-color) -1px -1px 0 , var(--tw-text-shadow-color) 1px -1px 0, var(--tw-text-shadow-color) -1px 1px 0;
 }
+
+input[type=number]{
+    appearance: none;
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
