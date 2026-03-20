@@ -57,6 +57,33 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'plate' => 'required|string|max:8|unique:cars,license_plate',
+            'brand' => 'required|string|max:255',
+            'model' => 'required|string|max:255',
+            'price' => 'required|decimal:0,2|min:0',
+            'mileage' => 'required|integer|min:0',
+            'seats' => 'nullable|integer|min:1',
+            'doors' => 'nullable|integer|min:1',
+            'weight' => 'nullable|integer|min:0',
+            'production_year' => 'nullable|integer|min:0',
+            'color' => 'nullable|string|max:255',
+        ]);
+
+        $request->user()->cars()->create([
+            'license_plate' => $validated['plate'],
+            'make' => $validated['brand'],
+            'model' => $validated['model'],
+            'price' => $validated['price'],
+            'mileage' => $validated['mileage'],
+            'seats' => $validated['seats'],
+            'doors' => $validated['doors'],
+            'weight' => $validated['weight'],
+            'production_year' => $validated['production_year'],
+            'color' => $validated['color'],
+        ]);
+
+        return redirect()->route("home");
     }
 
     /**
