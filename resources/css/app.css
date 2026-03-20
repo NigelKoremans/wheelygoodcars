@@ -9,3 +9,7 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+.text-border{
+    text-shadow: var(--tw-text-shadow-color) 1px 1px 0, var(--tw-text-shadow-color) 0px 1px 0 , var(--tw-text-shadow-color) 1px 0px 0, var(--tw-text-shadow-color) -1px -1px 0 , var(--tw-text-shadow-color) 1px -1px 0, var(--tw-text-shadow-color) -1px 1px 0;
+}
