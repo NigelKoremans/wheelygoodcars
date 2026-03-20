@@ -28,6 +28,28 @@ class OfferController extends Controller
      */
     public function create(Request $request)
     {
+        $plate = $request->query('plate');
+        $response = Http::get("https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" . $plate);
+
+        if ($response->ok() && !empty($response->json())) {
+            $car = $response->json()[0];
+
+            $brand = strtolower($car["merk"]);
+            $model = $car["handelsbenaming"];
+            $seats = $car["aantal_zitplaatsen"];
+            $doors = $car["aantal_deuren"];
+            $weight = $car["massa_rijklaar"];
+            $production_year = substr($car["datum_eerste_toelating"], 0, 4);
+            $color = strtolower($car["eerste_kleur"]);
+
+            return view('offers.create', compact('plate', 'brand', 'model', 'seats', 'doors', 'weight', 'production_year', 'color'));
+        }
+        else if ($response->notFound()) {
+            return back()->withErrors(['message' => "Kenteken niet gevonden"]);
+        }
+        else {
+            return redirect()->route("offers.start");
+        }
     }
 
     /**
