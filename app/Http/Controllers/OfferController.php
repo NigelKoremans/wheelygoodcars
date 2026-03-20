@@ -28,7 +28,7 @@ class OfferController extends Controller
      */
     public function create(Request $request)
     {
-        $plate = $request->query('plate');
+        $plate = $request->query('plate').toUpperCase();
         $response = Http::get("https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" . $plate);
 
         if ($response->ok() && !empty($response->json())) {
@@ -71,7 +71,7 @@ class OfferController extends Controller
         ]);
 
         $request->user()->cars()->create([
-            'license_plate' => $validated['plate'],
+            'license_plate' => $validated['plate'].ToUpperCase(),
             'make' => $validated['brand'],
             'model' => $validated['model'],
             'price' => $validated['price'],
