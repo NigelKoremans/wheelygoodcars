@@ -3,7 +3,7 @@
         <a class="text-xl font-bold" href=""><span class="text-white text-shadow-[0_0_2px_black,0_0_2px_black,0_0_2px_black]">Wheely</span> Good Cars<span class="text-white text-shadow-[0_0_2px_black,0_0_2px_black,0_0_2px_black]">!</span></a>
         <a class="ml-6 font-bold" href="">Alle auto's</a>
         <a class="ml-6 font-bold" href="">Mijn aanbod</a>
-        <a class="ml-6 font-bold" href="">Aanbod plaatsen</a>
+        <a class="ml-6 font-bold" href="{{ route('offers.start') }}">Aanbod plaatsen</a>
         @auth
         <form class="ml-auto font-bold" action="{{ route('logout') }}" method="post">
             @csrf
