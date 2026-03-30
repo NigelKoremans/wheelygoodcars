@@ -8,7 +8,7 @@
             <img src="{{ asset('images/' . $car->image) }}" alt="{{ $car->make }} {{ $car->model }}" class="w-full h-auto md:w-auto md:h-28 col-span-2 md:col-span-1 aspect-video object-cover rounded shadow-sm">
             @else
             <div class="w-full h-auto md:w-auto md:h-28 aspect-video bg-gray-200 flex items-center justify-center rounded shadow-sm">
-                <span class="text-gray-500">No image available</span>
+                <span class="text-gray-500">Geen afbeelding</span>
             </div>
             @endif
         </a>
