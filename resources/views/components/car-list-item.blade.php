@@ -1,7 +1,19 @@
 <div class="w-full mb-4 py-4 space-y-2">
     <div class="border border-neutral-300 w-full col-span-3"></div>
-    <a href="{{ route('offers.show', $car->id)}}" class="text-xl font-bold">{{ ucfirst($car->make) }} {{ ucfirst($car->model) }}</a>
 
+    <div class="flex justify-between">
+        <a href="{{ route('offers.show', $car->id)}}" class="text-xl font-bold">{{ ucfirst($car->make) }} {{ ucfirst($car->model) }}</a>
+
+        @if(request()->routeIs('offers.myoffers'))
+        <form action="{{ route('offers.destroy', $car->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class=" text-red-500 hover:text-red-700 cursor-pointer py-2 px-4 rounded" onclick="return confirm('Weet je zeker dat je dit aanbod wilt verwijderen?')">
+                Verwijderen
+            </button>
+        </form>
+        @endif
+    </div>
     <div class="grid grid-cols-3 md:grid-cols-3 mt-4">
         <a href="{{ route('offers.show', $car->id)}}">
             @if($car->image)
