@@ -135,7 +135,7 @@ class OfferController extends Controller
      */
     public function destroy(string $id)
     {
-        $offer = car::findOrFail($id);
+        $offer = Car::findOrFail($id);
 
         $offer->destroy();
 
