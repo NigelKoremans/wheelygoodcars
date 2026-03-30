@@ -12,6 +12,7 @@ Route::middleware("auth")->group(function () {
     Route::get('/aanbod_plaatsen', [OfferController::class, "create"])->name("offers.create");
     Route::post('/aanbod_plaatsen', [OfferController::class, "store"])->name("offers.store");
     Route::get('/mijn_aanbod', [OfferController::class, "myOffers"])->name("offers.myoffers");
+    Route::delete('/aanbod/{id}', [OfferController::class, "destroy"])->name("offers.destroy");
 });
 
 Route::get('/aanbod_lijst', [OfferController::class, "index"])->name("offers.index");
