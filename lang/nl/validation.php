@@ -22,6 +22,9 @@ return [
     ],
 
     'attributes' => [
+        'name' => 'naam',
+        'email' => 'e-mailadres',
+        'password' => 'wachtwoord',
         'plate' => 'kenteken',
         'brand' => 'merk',
         'model' => 'model',
