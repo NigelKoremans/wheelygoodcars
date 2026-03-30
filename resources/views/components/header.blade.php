@@ -8,7 +8,7 @@
             <a href="{{ route('offers.myoffers') }}" class="font-bold">Mijn aanbod</a>
             <form class="font-bold" action="{{ route('logout') }}" method="post">
                 @csrf
-                <input class="cursor-pointer hover:underline" type="submit" value="Uitloggen">
+                <input class="cursor-pointer" type="submit" value="Uitloggen">
             </form>
         </div>
 
