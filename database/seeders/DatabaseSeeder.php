@@ -22,8 +22,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
-            User::factory(150)->create();
-            Tag::factory(20)->create();
+
+        User::factory(150)->create();
+        Tag::factory(20)->create();
+
         $carCount = Car::count();
         $users = User::all();
         $tags = Tag::all();
