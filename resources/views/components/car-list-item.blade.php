@@ -24,7 +24,7 @@
             <p><strong>Kleur:</strong> {{ ucfirst($car->color) ?? '-' }}</p>
             <p><strong>Zitplaatsen:</strong> {{ $car->seats ?? '-' }}</p>
             <p><strong>Deuren:</strong> {{ $car->doors ?? '-' }}</p>
-            <p><strong>Massa:</strong> {{ $car->weight ? $car->weight . ' kg' : '-' }}</p>
+            <p><strong>Massa:</strong> {{ $car->weight ? number_format($car->weight, 0, ',', '.') . ' kg' : '-' }}</p>
         </div>
     </div>
 </div>
