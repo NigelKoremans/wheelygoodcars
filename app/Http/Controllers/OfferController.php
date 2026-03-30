@@ -137,7 +137,9 @@ class OfferController extends Controller
     {
         $offer = Car::findOrFail($id);
 
-        $offer->destroy();
+        if ($offer->user_id == Auth::id()) {
+            $offer->delete();
+        }
 
         return redirect()->route("offers.myoffers");
     }
