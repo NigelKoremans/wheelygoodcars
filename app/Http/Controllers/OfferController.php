@@ -32,7 +32,8 @@ class OfferController extends Controller
      */
     public function create(Request $request)
     {
-        $plate = $request->query('plate').toUpperCase();
+
+        $plate = strtoupper($request->query('plate'));
         $response = Http::get("https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" . $plate);
 
         if ($response->ok() && !empty($response->json())) {
