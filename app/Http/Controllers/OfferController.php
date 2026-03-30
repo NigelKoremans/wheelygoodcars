@@ -135,7 +135,11 @@ class OfferController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $offer = car::findOrFail($id);
+
+        $offer->destroy();
+
+        return redirect()->route("offers.myoffers");
     }
 
     public function myOffers()
