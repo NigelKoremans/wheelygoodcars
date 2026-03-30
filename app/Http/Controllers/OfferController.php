@@ -38,8 +38,8 @@ class OfferController extends Controller
         if ($response->ok() && !empty($response->json())) {
             $car = $response->json()[0];
 
-            $brand = strtolower($car["merk"]);
-            $model = $car["handelsbenaming"];
+            $brand = ucfirst(strtolower($car["merk"]));
+            $model = ucfirst(strtolower($car["handelsbenaming"]));
             $seats = $car["aantal_zitplaatsen"];
             $doors = $car["aantal_deuren"];
             $weight = $car["massa_rijklaar"];
