@@ -5,14 +5,14 @@
                 @csrf
 
                 @if ($errors->any())
-                    <div class="mb-4 rounded border border-red-300 bg-red-100 p-2 text-red-800">
-                        <p class="font-semibold">Controleer je invoer:</p>
-                        <ul class="list-disc pl-5">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                <div class="mb-4 rounded border border-red-300 bg-red-100 p-2 text-red-800">
+                    <p class="font-semibold">Controleer je invoer:</p>
+                    <ul class="list-disc pl-5">
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
                 @endif
 
                 <div class="py-2">
