@@ -8,7 +8,7 @@
         <form action="{{ route('offers.destroy', $car->id) }}" method="POST">
             @csrf
             @method('DELETE')
-            <button type="submit" class=" text-red-500 hover:text-red-700 cursor-pointer py-2 px-4 rounded" onclick="return confirm('Weet je zeker dat je dit aanbod wilt verwijderen?')">
+            <button type="submit" class=" text-red-500 hover:text-red-700 cursor-pointer" onclick="return confirm('Weet je zeker dat je dit aanbod wilt verwijderen?')">
                 Verwijderen
             </button>
         </form>
