@@ -13,3 +13,4 @@ Route::middleware("auth")->group(function () {
     Route::post('/aanbod_plaatsen', [OfferController::class, "store"])->name("offers.store");
     Route::get('/mijn_aanbod', [OfferController::class, "myOffers"])->name("offers.myoffers");
 });
+Route::get('/aanbod/{id}', [OfferController::class, "show"])->name("offers.show");
