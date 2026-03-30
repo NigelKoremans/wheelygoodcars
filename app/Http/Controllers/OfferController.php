@@ -62,11 +62,9 @@ class OfferController extends Controller
             $color = strtolower($car["eerste_kleur"]);
 
             return view('offers.create', compact('plate', 'brand', 'model', 'seats', 'doors', 'weight', 'production_year', 'color'));
-        }
-        else if ($response->notFound()) {
+        } else if ($response->notFound()) {
             return back()->withErrors(['message' => "Kenteken niet gevonden"]);
-        }
-        else {
+        } else {
             return redirect()->route("offers.start");
         }
     }
