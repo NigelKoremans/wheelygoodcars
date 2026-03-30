@@ -34,6 +34,16 @@ class OfferController extends Controller
     {
 
         $plate = strtoupper($request->query('plate'));
+
+        /*
+            avoid another request to the RDW api when failing validation
+        */
+        $oldInput = $request->session()->getOldInput();
+
+        if (!empty($oldInput)) {
+            return view('offers.create')->with("plate", $plate);
+        }
+
         if ($plate == "") {
             return redirect()->route("offers.start");
         }
