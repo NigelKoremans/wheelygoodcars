@@ -75,7 +75,7 @@ class OfferController extends Controller
         ]);
 
         $request->user()->cars()->create([
-            'license_plate' => $validated['plate'].ToUpperCase(),
+            'license_plate' => strtoupper($validated['plate']),
             'make' => $validated['brand'],
             'model' => $validated['model'],
             'price' => $validated['price'],
