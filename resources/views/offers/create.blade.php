@@ -87,7 +87,7 @@
                     <label for="price" class="text-xl text-white text-shadow-black text-border">Vraagprijs</label>
                     <div class="border border-neutral-400 rounded mt-1 flex">
                         <p class="px-1 bg-neutral-200">€</p>
-                        <input class="flex-1 px-1" type="number" name="price" id="price" value="{{ old('price') }}" required>
+                        <input class="flex-1 px-1" type="number" name="price" id="price" step="0.01" value="{{ old('price') }}" required>
                     </div>
                     @error('price')
                         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
