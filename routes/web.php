@@ -8,7 +8,8 @@ Route::get('/', function () {
 })->name("home");
 
 Route::middleware("auth")->group(function () {
-    Route::get('/nieuw_aanbod', [OfferController::class, "start"])->name("offers.start")->middleware('auth');
-    Route::get('/aanbod_plaatsen', [OfferController::class, "create"])->name("offers.create")->middleware('auth');
-    Route::post('/aanbod_plaatsen', [OfferController::class, "store"])->name("offers.store")->middleware('auth');
+    Route::get('/nieuw_aanbod', [OfferController::class, "start"])->name("offers.start");
+    Route::get('/aanbod_plaatsen', [OfferController::class, "create"])->name("offers.create");
+    Route::post('/aanbod_plaatsen', [OfferController::class, "store"])->name("offers.store");
+    Route::get('/mijn_aanbod', [OfferController::class, "myOffers"])->name("offers.myoffers");
 });
