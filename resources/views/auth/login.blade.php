@@ -17,14 +17,14 @@
 
                 <div class="py-2">
                     <label for="email">E-mail</label>
-                    <input placeholder="Voer je e-mailadres in" class="block p-1 w-64 bg-white shadow-sm border border-gray-300" type="email" name="email" id="email" value="{{ old('email') }}" required autocomplete="username" autofocus>
+                    <input placeholder="Voer je e-mailadres in" class="block p-1 w-64 bg-white shadow-sm border border-gray-300" type="email" name="email" id="email" value="{{ old('email') }}" required autofocus>
                     @error('email')
                     <p class="mt-1 text-sm text-red-200">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="py-2">
                     <label for="password">Wachtwoord</label>
-                    <input placeholder="Voer je wachtwoord in" class="block p-1 w-64 bg-white shadow-sm border border-gray-300" type="password" name="password" id="password" required autocomplete="current-password">
+                    <input placeholder="Voer je wachtwoord in" class="block p-1 w-64 bg-white shadow-sm border border-gray-300" type="password" name="password" id="password" required>
                     @error('password')
                     <p class="mt-1 text-sm text-red-200">{{ $message }}</p>
                     @enderror

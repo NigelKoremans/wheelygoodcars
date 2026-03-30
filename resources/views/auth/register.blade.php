@@ -17,31 +17,36 @@
 
                 <div class="py-2">
                     <label for="name">Naam</label>
-                    <input placeholder="Voer je naam in" class="block p-1 w-64 bg-white shadow-sm border border-gray-300" type="text" name="name" id="name" value="{{ old('name') }}" required autofocus autocomplete="name">
+                    <input placeholder="Voer je naam in" class="block p-1 w-64 bg-white shadow-sm border border-gray-300" type="text" name="name" id="name" value="{{ old('name') }}" required autofocus>
                     @error('name')
-                        <p class="mt-1 text-sm text-red-200">{{ $message }}</p>
+                    <p class="mt-1 text-sm text-red-200">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="py-2">
                     <label for="email">E-mail</label>
-                    <input placeholder="Voer je e-mailadres in" class="block p-1 w-64 bg-white shadow-sm border border-gray-300" type="email" name="email" id="email" value="{{ old('email') }}" required autocomplete="username">
+                    <input placeholder="Voer je e-mailadres in" class="block p-1 w-64 bg-white shadow-sm border border-gray-300" type="email" name="email" id="email" value="{{ old('email') }}" required>
                     @error('email')
-                        <p class="mt-1 text-sm text-red-200">{{ $message }}</p>
+                    <p class="mt-1 text-sm text-red-200">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="py-2">
+                    <label for="phonenumber">Telefoonnummer</label>
+                    <input placeholder="Voer je telefoonnummer in" class="block p-1 w-64 bg-white shadow-sm border border-gray-300" type="tel" name="phonenumber" id="phonenumber" required>
+                </div>
+
+                <div class="py-2">
                     <label for="password">Wachtwoord</label>
-                    <input placeholder="Voer je wachtwoord in" class="block p-1 w-64 bg-white shadow-sm border border-gray-300" type="password" name="password" id="password" required autocomplete="new-password">
+                    <input placeholder="Voer je wachtwoord in" class="block p-1 w-64 bg-white shadow-sm border border-gray-300" type="password" name="password" id="password" required>
                     @error('password')
-                        <p class="mt-1 text-sm text-red-200">{{ $message }}</p>
+                    <p class="mt-1 text-sm text-red-200">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="py-2">
                     <label for="password_confirmation">Bevestig wachtwoord</label>
-                    <input placeholder="Bevestig je wachtwoord" class="block p-1 w-64 bg-white shadow-sm border border-gray-300" type="password" name="password_confirmation" id="password_confirmation" required autocomplete="new-password">
+                    <input placeholder="Bevestig je wachtwoord" class="block p-1 w-64 bg-white shadow-sm border border-gray-300" type="password" name="password_confirmation" id="password_confirmation" required>
                 </div>
 
                 <div class="mt-4 flex items-center justify-between">
