@@ -91,7 +91,10 @@ class OfferController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $car = Car::findOrFail($id);
+        $poster = $car->user()->get();
+
+        return view("offers.show")->with("car", $car)->with("poster", $poster);
     }
 
     /**
