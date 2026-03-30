@@ -34,6 +34,10 @@ class OfferController extends Controller
     {
 
         $plate = strtoupper($request->query('plate'));
+        if ($plate == "") {
+            return redirect()->route("offers.start");
+        }
+
         $response = Http::get("https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" . $plate);
 
         if ($response->ok() && !empty($response->json())) {
