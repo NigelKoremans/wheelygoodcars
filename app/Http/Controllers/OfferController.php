@@ -62,7 +62,7 @@ class OfferController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'plate' => 'required|string|max:8|unique:cars,license_plate',
+            'plate' => 'required|string|min:6|max:6|unique:cars,license_plate',
             'brand' => 'required|string|max:255',
             'model' => 'required|string|max:255',
             'price' => 'required|decimal:0,2|min:0',
