@@ -124,6 +124,8 @@ class OfferController extends Controller
     {
         $car = Car::findOrFail($id);
         $poster = $car->user()->get();
+        $car->views += 1;
+        $car->update();
 
         return view("offers.show")->with("car", $car)->with("poster", $poster);
     }
