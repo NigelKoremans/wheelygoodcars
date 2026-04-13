@@ -8,7 +8,10 @@
 
             <div class="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 gap-6 mt-4">
                 @if($car->image)
-                <img src="{{ asset('images/' . $car->image) }}" alt="{{ $car->make }} {{ $car->model }}" class="w-full aspect-video object-cover rounded shadow-sm">
+                <div class="cursor-zoom-in relative"  id="imagecontainer">
+                    <img src="{{ asset('storage/images/' . $car->image) }}" alt="{{ $car->make }} {{ $car->model }}" class="w-full aspect-video object-cover rounded shadow-sm">
+                    <p class="absolute bottom-1 right-2 text-xl aspect-square h-7 text-center bg-white rounded">⛶</p>
+                </div>
                 @else
                 <div class="w-full aspect-video bg-gray-200 flex items-center justify-center rounded shadow-sm">
                     <span class="text-gray-500">No image available</span>
@@ -32,4 +35,21 @@
             </div>
         </div>
     </div>
+    @if ($car->image)
+    <div class="hidden top-0 left-0 z-50 w-screen h-screen fixed bg-white/90 cursor-zoom-out" id="imagezoom">
+        <div class="flex items-center justify-center w-full h-full p-4">
+            <img src="{{ asset('storage/images/' . $car->image) }}" alt="{{ $car->make }} {{ $car->model }}" class="w-full h-full object-contain drop-shadow-2xl">
+        </div>
+    </div>
+    @endif
+
+    <script>
+        const image = document.getElementById("imagecontainer");
+        const imagezoom = document.getElementById("imagezoom")
+
+        if (image) {
+            imagezoom.onclick = () => imagezoom.classList.toggle("hidden");
+            image.onclick = () => imagezoom.classList.toggle("hidden");
+        }
+    </script>
 </x-app-layout>
