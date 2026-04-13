@@ -21,8 +21,8 @@
             const cleanValue = targetValue.replace(/[^a-zA-Z0-9]/g, "");
 
             if (cleanValue.length > 6) {
-                let formatted = plateHidden.value.replace(/([a-zA-Z])(?=[0-9])/g, "$1-");
-                plateInput.value = formatted.replace(/([0-9])(?=[a-zA-Z])/g, "$1-");
+                let formatted = plateHidden.value.replace(/([a-zA-Z])(?=[0-9])|[0-9](=?[a-zA-Z])/, "$1$2-");
+                plateInput.value = formatted;
                 return;
             }
 
