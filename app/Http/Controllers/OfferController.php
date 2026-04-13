@@ -14,7 +14,7 @@ class OfferController extends Controller
      */
     public function index()
     {
-        $offers = Car::paginate(10);
+        $offers = Car::latest()->paginate(10);
 
         return view("offers.index")->with("offers", $offers);
     }
