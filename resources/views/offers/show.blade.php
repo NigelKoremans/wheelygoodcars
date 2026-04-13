@@ -17,8 +17,8 @@
 
                 <div class="space-y-2">
                     <p class="text-xl font-semibold text-green-600">€ {{ number_format($car->price, 2) }}</p>
-                    <p><strong>Kenteken:</strong> {{ $car->license_plate }}</p>
-                    <p><strong>Kilometerstand:</strong> {{ number_format($car->mileage) }} km</p>
+                    <p><strong>Kenteken:</strong> {{ preg_replace('/([a-zA-Z])(?=[0-9])|([0-9])(?=[a-zA-Z])/', '$1$2-', $car->license_plate) }}</p>
+                    <p><strong>Kilometerstand:</strong> {{ number_format($car->mileage, 0, ',', '.') }} km</p>
                     <p><strong>Jaar van productie:</strong> {{ $car->production_year ?? '-' }}</p>
                 </div>
 
@@ -26,7 +26,7 @@
                     <p><strong>Kleur:</strong> {{ ucfirst($car->color) ?? '-' }}</p>
                     <p><strong>Zitplaatsen:</strong> {{ $car->seats ?? '-' }}</p>
                     <p><strong>Deuren:</strong> {{ $car->doors ?? '-' }}</p>
-                    <p><strong>Massa:</strong> {{ $car->weight ? $car->weight . ' kg' : '-' }}</p>
+                    <p><strong>Massa:</strong> {{ $car->weight ? number_format($car->weight, 0, ',', '.') . ' kg' : '-' }}</p>
                 </div>
                 <a href="" class="bg-cyan-800 text-white">KOPEN KOPEN KOPEN KOPEN</a>
             </div>
