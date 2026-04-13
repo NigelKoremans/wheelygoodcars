@@ -76,6 +76,7 @@ class OfferController extends Controller
     {
         $validated = $request->validate([
             'plate' => 'required|string|min:6|max:6|unique:cars,license_plate',
+            'image' => 'image',
             'brand' => 'required|string|max:255',
             'model' => 'required|string|max:255',
             'price' => 'required|decimal:0,2|min:0|max:99999999',
@@ -87,8 +88,21 @@ class OfferController extends Controller
             'color' => 'nullable|string|max:255',
         ]);
 
+        if (isset($validated["image"])) {
+            $image = $validated["image"];
+            $filename = str_replace(
+                ' ',
+                '_',
+                $image->hashname()
+            );
+            $path = public_path('storage/images');
+
+            $image->move($path, $filename);
+        }
+
         $request->user()->cars()->create([
             'license_plate' => strtoupper($validated['plate']),
+            'image' => isset($image) ? $filename : null,
             'make' => $validated['brand'],
             'model' => $validated['model'],
             'price' => $validated['price'],

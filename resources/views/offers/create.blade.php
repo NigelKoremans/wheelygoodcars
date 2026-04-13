@@ -2,24 +2,40 @@
     <div class="grid grid-cols-3 flex-1 w-full">
         <div class="col-span-2 col-start-2 py-8 px-10 border-l border-black">
             <h1 class="text-3xl text-white text-shadow-black text-border">Nieuw aanbod</h1>
-            <form action="{{ route('offers.store') }}" method="POST">
+            <form action="{{ route('offers.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 @if ($errors->any())
-                    <div class="mt-3 rounded border border-red-300 bg-red-100 p-2 text-red-800">
-                        <p class="font-semibold">Controleer je invoer:</p>
-                        <ul class="list-disc pl-5">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                <div class="mt-3 rounded border border-red-300 bg-red-100 p-2 text-red-800">
+                    <p class="font-semibold">Controleer je invoer:</p>
+                    <ul class="list-disc pl-5">
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
                 @endif
+                <div class="flex justify-between">
+                    <div>
+                        <x-license-plate :$plate />
+                        @error('plate')
+                        <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div>
+                        <label for="image">
+                            <div class="w-full h-auto md:w-auto md:h-28 aspect-video bg-gray-200 flex items-center justify-center rounded shadow-sm overflow-hidden">
+                                <p class="px-6 text-center" id="upload-text">Afbeelding uploaden</p>
+                                <img id="image-preview" class="w-full h-full object-contain hidden" alt="Image Preview">
+                            </div>
+                        </label>
+                        <input type="file" name="image" id="image" accept="image/*" class="h-0 w-0 absolute" onchange="selectImage(event)">
+                        @error('image')
+                        <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
 
-                <x-license-plate :$plate />
-                @error('plate')
-                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                @enderror
                 <div class="mt-3 flex flex-col">
                     <label for="Brand" class="text-xl text-neutral-200 text-shadow-black text-border">Merk</label>
                     <input class="border border-neutral-400 rounded mt-1 px-1" type="text" name="brand" id="brand" value="{{ old('brand') ?? $brand }}" required>
@@ -99,4 +115,25 @@
             </form>
         </div>
     </div>
+    <script>
+        function selectImage(event) {
+            var input = event.target;
+            var preview = document.getElementById("image-preview");
+            var text = document.getElementById("upload-text");
+            const file = input.files[0];
+            if (file) {
+                if (!file.type.startsWith("image/")) {
+                    text.innerText = "Ongeldig bestand. Kies een afbeelding."
+                    text.classList.add("text-red-500");
+                    preview.classList.add("hidden");
+                    text.classList.remove("hidden");
+                    input.value = "";
+                    return;
+                }
+                preview.src = URL.createObjectURL(file);
+                preview.classList.remove("hidden");
+                text.classList.add("hidden");
+            }
+        }
+    </script>
 </x-app-layout>
