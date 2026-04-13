@@ -5,7 +5,7 @@
             <p class="text-white text-center">NL</p>
         </div>
         <div class="h-full flex pl-12 items-center">
-            <input id="plate" value="{{ $plate }}" required class="pb-1 text-6xl w-70 uppercase outline-0 text-shadow-[0_0_3px,0_0_3px,0_0_3px,0_0_3px] text-shadow-yellow-700" maxlength="8" type="text" placeholder="AA-BB-12">
+            <input id="plate" value="{{ $plate }}" required class="pb-1 text-6xl w-70 uppercase outline-0 font-mono text-shadow-[0_0_3px,0_0_3px,0_0_3px,0_0_3px] text-shadow-yellow-700" maxlength="8" type="text" placeholder="AA-BB-12">
             <input type="hidden" name="plate" id="platehidden" value="{{ $plate }}">
             <input class="text-xl hover:text-white" type="submit" value="Go!">
         </div>
