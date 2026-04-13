@@ -14,6 +14,7 @@ class Car extends Model
     protected $fillable = [
         'user_id',
         'license_plate',
+        'image',
         'make',
         'model',
         'price',
