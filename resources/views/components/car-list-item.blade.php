@@ -2,8 +2,10 @@
     <div class="border border-neutral-300 w-full col-span-3"></div>
 
     <div class="flex justify-between">
-        <a href="{{ route('offers.show', $car->id)}}" class="text-xl font-bold">{{ ucfirst($car->make) }} {{ ucfirst($car->model) }}</a>
-
+        <div>
+            <a href="{{ route('offers.show', $car->id)}}" class="text-xl font-bold">{{ ucfirst($car->make) }} {{ ucfirst($car->model) }}</a>
+            <p>{{$car->views}} weergaven</p>
+        </div>
         @if(request()->routeIs('offers.myoffers'))
         <form action="{{ route('offers.destroy', $car->id) }}" method="POST">
             @csrf
