@@ -3,7 +3,7 @@
         <div class="border w-full px-4 py-4 border-black space-y-4">
             <h1 class="text-3xl font-bold">{{ ucfirst($car->make) }} {{ ucfirst($car->model) }}</h1>
             <div class="mb-4 border-b border-gray-200">
-                <p class="text-sm text-gray-600">Listed by: {{ $car->user->name ?? 'Unknown' }}</p>
+                <p class="text-sm text-gray-600">Verkoop door: {{ $car->user->name ?? 'Unknown' }}</p>
             </div>
 
             <div class="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 gap-6 mt-4">
