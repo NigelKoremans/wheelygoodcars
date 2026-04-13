@@ -14,6 +14,7 @@ return [
         'numeric' => ':attribute moet minimaal :min zijn.',
     ],
     'unique' => ':attribute bestaat al.',
+    'image' => ':attribute moet een afbeelding zijn',
 
     'custom' => [
         'plate' => [
@@ -26,6 +27,7 @@ return [
         'email' => 'e-mailadres',
         'password' => 'wachtwoord',
         'plate' => 'kenteken',
+        'image' => 'afbeelding',
         'brand' => 'merk',
         'model' => 'model',
         'price' => 'vraagprijs',
