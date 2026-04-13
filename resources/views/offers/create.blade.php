@@ -24,14 +24,14 @@
                     <label for="Brand" class="text-xl text-neutral-200 text-shadow-black text-border">Merk</label>
                     <input class="border border-neutral-400 rounded mt-1 px-1" type="text" name="brand" id="brand" value="{{ old('brand') ?? $brand }}" required>
                     @error('brand')
-                        <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="mt-3 flex flex-col">
                     <label for="model" class="text-xl text-white text-shadow-black text-border">Model</label>
                     <input class="border border-neutral-400 rounded mt-1 px-1" type="text" name="model" id="model" value="{{ old('model') ?? $model }}" required>
                     @error('model')
-                        <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="grid grid-cols-3 gap-2 mt-3">
@@ -39,14 +39,14 @@
                         <label for="seats" class="text-xl text-white text-shadow-black text-border">Zitplaatsen</label>
                         <input class="border border-neutral-400 rounded mt-1 px-1" type="number" name="seats" id="seats" value="{{ old('seats') ?? $seats }}" required>
                         @error('seats')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                        <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="flex flex-col">
                         <label for="doors" class="text-xl text-white text-shadow-black text-border">Aantal deuren</label>
                         <input class="border border-neutral-400 rounded mt-1 px-1" type="number" name="doors" id="doors" value="{{ old('doors') ?? $doors }}" required>
                         @error('doors')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                        <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="flex flex-col">
@@ -56,7 +56,7 @@
                             <p class="px-1 bg-neutral-200">kg</p>
                         </div>
                         @error('weight')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                        <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
@@ -65,14 +65,14 @@
                         <label for="production_year" class="text-xl text-white text-shadow-black text-border">Jaar van productie</label>
                         <input class="border border-neutral-400 rounded mt-1 px-1" type="number" name="production_year" id="production_year" value="{{ old('production_year') ?? $production_year }}" required>
                         @error('production_year')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                        <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="flex flex-col">
                         <label for="color" class="text-xl text-white text-shadow-black text-border">Kleur</label>
                         <input class="border border-neutral-400 rounded mt-1 px-1" type="text" name="color" id="color" value="{{ old('color') ?? $color }}" required>
                         @error('color')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                        <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                     <label for="mileage" class="text-xl text-white text-shadow-black text-border">Kilometerstand</label>
                     <input class="border border-neutral-400 rounded mt-1 px-1" type="number" name="mileage" id="mileage" value="{{ old('mileage') }}" required>
                     @error('mileage')
-                        <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="mt-3 flex flex-col">
@@ -90,7 +90,7 @@
                         <input class="flex-1 px-1" type="number" name="price" id="price" step="0.01" value="{{ old('price') }}" required>
                     </div>
                     @error('price')
-                        <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="mt-3 flex flex-col">
