@@ -17,15 +17,17 @@
         @endif
     </div>
     <div class="grid grid-cols-3 md:grid-cols-3 mt-4">
-        <a href="{{ route('offers.show', $car->id)}}">
-            @if($car->image)
-            <img src="{{ asset('images/' . $car->image) }}" alt="{{ $car->make }} {{ $car->model }}" class="w-full h-auto md:w-auto md:h-28 col-span-2 md:col-span-1 aspect-video object-cover rounded shadow-sm">
-            @else
-            <div class="w-full h-auto md:w-auto md:h-28 aspect-video bg-gray-200 flex items-center justify-center rounded shadow-sm">
-                <span class="text-gray-500">Geen afbeelding</span>
-            </div>
-            @endif
-        </a>
+        <div>
+            <a href="{{ route('offers.show', $car->id)}}">
+                @if($car->image)
+                <img src="{{ asset('storage/images/' . $car->image) }}" alt="{{ $car->make }} {{ $car->model }}" class="w-full h-auto md:w-auto md:h-28 col-span-2 md:col-span-1 aspect-video object-cover rounded shadow-sm">
+                @else
+                <div class="w-full h-auto md:w-auto md:h-28 aspect-video bg-gray-200 flex items-center justify-center rounded shadow-sm">
+                    <span class="text-gray-500">Geen afbeelding</span>
+                </div>
+                @endif
+            </a>
+        </div>
 
         <div class="">
             <p class="text-xl font-semibold text-green-600">€ {{ number_format($car->price, 2, ',', '.') }}</p>
