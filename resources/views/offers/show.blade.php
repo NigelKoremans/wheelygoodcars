@@ -8,7 +8,7 @@
 
             <div class="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 gap-6 mt-4">
                 @if($car->image)
-                <div class="cursor-zoom-in relative"  id="imagecontainer">
+                <div class="cursor-zoom-in relative" id="imagecontainer">
                     <img src="{{ asset('storage/images/' . $car->image) }}" alt="{{ $car->make }} {{ $car->model }}" class="w-full aspect-video object-cover rounded shadow-sm">
                     <p class="absolute bottom-1 right-2 text-xl aspect-square h-7 text-center bg-white rounded">⛶</p>
                 </div>
@@ -31,7 +31,11 @@
                     <p><strong>Deuren:</strong> {{ $car->doors ?? '-' }}</p>
                     <p><strong>Massa:</strong> {{ $car->weight ? number_format($car->weight, 0, ',', '.') . ' kg' : '-' }}</p>
                 </div>
+                @if (Auth::user() && $car->user->id == Auth::user()->id)
+                <p>WIP status aanpasser</p>
+                @else
                 <a href="" class="bg-cyan-800 text-white">KOPEN KOPEN KOPEN KOPEN</a>
+                @endif
             </div>
         </div>
     </div>
