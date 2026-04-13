@@ -163,7 +163,7 @@ class OfferController extends Controller
     public function myOffers()
     {
         $user = Auth::user();
-        $offers = Car::all()->where("user_id", "==", $user->id);
+        $offers = Car::where('user_id', $user->id)->latest()->get();
 
         return view("offers.myoffers")->with("offers", $offers);
     }
