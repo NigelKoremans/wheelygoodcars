@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<x-head />
+<x-head :title="$title ?? ''" />
 
 <body class="min-h-screen flex flex-col">
     <x-header />
