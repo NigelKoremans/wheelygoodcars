@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout :title="'Registreren - Wheely Good Cars'">
     <div class="mx-auto my-auto h-full flex flex-col">
         <form class="mx-auto my-auto flex flex-col h-full flex-1" action="{{ url('/register') }}" method="POST">
             <div class="border border-neutral-500 py-8 px-8">
