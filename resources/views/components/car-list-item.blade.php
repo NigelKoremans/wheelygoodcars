@@ -29,7 +29,7 @@
 
         <div class="">
             <p class="text-xl font-semibold text-green-600">€ {{ number_format($car->price, 2, ',', '.') }}</p>
-            <p><strong>Kenteken:</strong> {{ $car->license_plate }}</p>
+            <p><strong>Kenteken:</strong> {{ preg_replace('/([a-zA-Z])(?=[0-9])|([0-9])(?=[a-zA-Z])/', '$1$2-', $car->license_plate) }}</p>
             <p><strong>Kilometerstand:</strong> {{ number_format($car->mileage, 0, ',', '.') }} km</p>
             <p><strong>Jaar van productie:</strong> {{ $car->production_year ?? '-' }}</p>
         </div>
