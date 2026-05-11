@@ -32,16 +32,15 @@ new class extends Component
 };
 ?>
 
-<div class="w-full py-8 px-8 bg-white" x-data="{ zoomOpen : false }">
+<div class="w-full py-8 px-8 bg-white" x-data="{ zoomOpen: false, toggle() { this.zoomOpen = !this.zoomOpen } }">
     <div class="border w-full px-4 py-4 border-black space-y-4">
         <h1 class="text-3xl font-bold">{{ ucfirst($car->make) }} {{ ucfirst($car->model) }}</h1>
         <div class="mb-4 border-b border-gray-200">
             <p class="text-sm text-gray-600">Verkoop door: {{ $car->user->name ?? 'Unknown' }}</p>
         </div>
-
         <div class="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 gap-6 mt-4">
             @if($car->image)
-            <div class="cursor-zoom-in relative" id="imagecontainer" x-on:click="zoomOpen = true;">
+            <div class="cursor-zoom-in relative" id="imagecontainer" @click="toggle()">
                 @if ($car->sold_at)
                 <p class="absolute text-red-400 text-shadow-xs text-shadow-black bottom-25 right-0 left-0 top-25 text-6xl text-center font-bold rotate-16 tracking-widest select-none">VERKOCHT</p>
                 @endif
@@ -97,23 +96,16 @@ new class extends Component
         </div>
     </div>
     @if ($car->image)
-    <div x-show="zoomOpen" class="hidden top-0 left-0 z-50 w-screen h-screen fixed bg-white/90 cursor-zoom-out" id="imagezoom">
+        <div x-cloak x-show="zoomOpen" class="top-0 left-0 z-50 w-screen h-screen fixed bg-white/90 cursor-zoom-out" id="imagezoom">
         <div class="flex items-center justify-center w-full h-full p-4">
             <img src="{{ asset('storage/images/' . $car->image) }}" alt="{{ $car->make }} {{ $car->model }}" class="w-full h-full object-contain drop-shadow-2xl"
-                x-on:click="
-                    zoomOpen = false;
-                 ">
+                x-on:click="toggle()">
         </div>
     </div>
     @endif
 
     <script>
-        const image = document.getElementById("imagecontainer");
-        const imagezoom = document.getElementById("imagezoom")
 
-        if (image) {
-            imagezoom.onclick = () => imagezoom.classList.toggle("hidden");
-            image.onclick = () => imagezoom.classList.toggle("hidden");
         }
     </script>
 </div>
