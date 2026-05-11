@@ -4,4 +4,6 @@
     <title>{{ config('app.name', 'WheelyGoodCars') }}</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    @livewireStyles
 </head>
