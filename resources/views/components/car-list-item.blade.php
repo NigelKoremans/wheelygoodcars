@@ -1,6 +1,4 @@
-<div class="w-full mb-4 py-4 space-y-2">
-    <div class="border border-neutral-300 w-full col-span-3"></div>
-
+<div class="w-full py-4 hover:bg-neutral-50 px-4">
     <div class="flex justify-between">
         <div>
             <a href="{{ route('offers.show', $car->id)}}" wire:navigate class="text-xl font-bold">{{ ucfirst($car->make) }} {{ ucfirst($car->model) }}</a>
@@ -44,3 +42,4 @@
         </div>
     </div>
 </div>
+<div class="border border-neutral-300 mx-6"></div>
