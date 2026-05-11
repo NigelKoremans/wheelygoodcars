@@ -18,7 +18,7 @@ class CarFactory extends Factory
     {
         return [
             'user_id' => \App\Models\User::factory(),
-            'license_plate' => strtoupper($this->faker->bothify('??-##-??')),
+            'license_plate' => strtoupper($this->faker->bothify('??##??')),
             'make' => $this->faker->company(),
             'model' => $this->faker->word(),
             'price' => $this->faker->randomFloat(2, 1000, 50000),
