@@ -3,7 +3,7 @@
 
     <div class="flex justify-between">
         <div>
-            <a href="{{ route('offers.show', $car->id)}}" class="text-xl font-bold">{{ ucfirst($car->make) }} {{ ucfirst($car->model) }}</a>
+            <a href="{{ route('offers.show', $car->id)}}" wire:navigate class="text-xl font-bold">{{ ucfirst($car->make) }} {{ ucfirst($car->model) }}</a>
             <p>{{$car->views}} weergaven</p>
         </div>
         @if(request()->routeIs('offers.myoffers'))
@@ -18,7 +18,7 @@
     </div>
     <div class="grid grid-cols-3 md:grid-cols-3 mt-4">
         <div>
-            <a href="{{ route('offers.show', $car->id)}}">
+            <a href="{{ route('offers.show', $car->id)}}" wire:navigate>
                 @if($car->image)
                 <img src="{{ asset('storage/images/' . $car->image) }}" alt="{{ $car->make }} {{ $car->model }}" class="w-full h-auto md:w-auto md:h-28 col-span-2 md:col-span-1 aspect-video object-cover rounded shadow-sm">
                 @else
