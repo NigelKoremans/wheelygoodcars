@@ -3,6 +3,7 @@
 use Livewire\Component;
 use Livewire\Attributes\Url;
 use Illuminate\Support\Facades\Http;
+use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\WithFileUploads;
 

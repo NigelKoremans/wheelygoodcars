@@ -1,9 +1,10 @@
 <?php
 
 use App\Models\Car;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new class extends Component
+new #[Title('Mijn Aanbod - Wheely Good Cars!')] class extends Component
 {
     public function with(): array
     {
