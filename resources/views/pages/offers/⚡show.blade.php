@@ -3,6 +3,8 @@
 use Livewire\Component;
 use App\Models\Car;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Redis;
 use Livewire\Attributes\Validate;
 
 new class extends Component
@@ -10,12 +12,29 @@ new class extends Component
     public Car $car;
     #[Validate('required|decimal:0,2|min:0|max:99999999')]
     public float $price;
+    public int $recentViews;
 
     public function mount(string $id)
     {
         $this->car = Car::findOrFail($id);
-        $this->car->views += 1;
-        $this->car->save();
+
+        RateLimiter::attempt(
+            'register-view:' . $this->car->id . ":" . request()->ip(),
+            1,
+            function () {
+                $this->car->views += 1;
+                $this->car->save();
+
+                Redis::incr('views:' . $this->car->id);
+
+                if (Redis::ttl('views:' . $this->car->id) == -1) {
+                    Redis::expire('views:' . $this->car->id, 86400);
+                }
+            },
+            3600 // 1 view per car per user (ip) per hour
+        );
+        $this->recentViews = Redis::get('views:' . $this->car->id);
+        $this->price = $this->car->price;
     }
 
     public function markAsSold()
@@ -52,9 +71,19 @@ new class extends Component
 };
 ?>
 
-<div class="w-full py-8 px-8 bg-white" x-data="{ zoomOpen: false, toggle() { this.zoomOpen = !this.zoomOpen } }">
-    <div class="border w-full px-4 py-4 border-black space-y-4">
-        <h1 class="text-3xl font-bold">{{ ucfirst($car->make) }} {{ ucfirst($car->model) }}</h1>
+<div class="w-full py-8 px-8 bg-white" x-data="{ zoomOpen: false, toggleZoom() { this.zoomOpen = !this.zoomOpen } }">
+
+    <div class="border border-black w-full px-4 py-4 space-y-4">
+        <div class="flex space-x-5">
+            <h1 class="text-4xl font-bold">{{ ucfirst($car->make) }} {{ ucfirst($car->model) }}</h1>
+            <div x-data="{show: false}"
+                x-init="setTimeout(() => show = true, 1000)"
+                x-show="show"
+                x-cloak
+                class="border border-amber-400 flex-1 px-4 py-1 text-xl text-amber-400 bg-amber-50">
+                <span class="font-bold">{{ $recentViews }}</span>{{ " klanten bekeken deze auto vandaag!" }}
+            </div>
+        </div>
         <div class="mb-4 border-b border-gray-200">
             <p class="text-sm text-gray-600">Verkoop door: {{ $car->user->name ?? 'Unknown' }}</p>
         </div>
