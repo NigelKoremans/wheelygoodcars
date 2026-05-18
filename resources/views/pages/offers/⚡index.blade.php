@@ -12,7 +12,7 @@ new #[Title('Alle Auto\'s - Wheely Good Cars!')] class extends Component
     public function with(): array
     {
         return [
-            'offers' => Car::latest()->paginate(10),
+            'offers' => Car::whereNull("sold_at")->latest()->paginate(10),
         ];
     }
 };
