@@ -3,10 +3,13 @@
 use Livewire\Component;
 use App\Models\Car;
 use Carbon\Carbon;
+use Livewire\Attributes\Validate;
 
 new class extends Component
 {
     public Car $car;
+    #[Validate('required|decimal:0,2|min:0|max:99999999')]
+    public float $price;
 
     public function mount(string $id)
     {
@@ -28,6 +31,23 @@ new class extends Component
     public function render()
     {
         return $this->view()->title("{$this->car->make} {$this->car->model} - Wheely Good Cars!");
+    }
+
+    public function changePrice()
+    {
+        if (!auth() || auth()->id() != $this->car->user_id) {
+            $this->addError('price', "You are not authorized to change the price");
+        }
+
+        if ($this->car->sold_at) {
+            $this->addError('price', 'You cannot change the price of a sold car.');
+            return;
+        }
+
+        $this->validate();
+        $this->car->price = $this->price;
+        $this->car->save();
+        $this->dispatch('price-saved');
     }
 };
 ?>
@@ -57,8 +77,37 @@ new class extends Component
             </div>
             @endif
 
-            <div class="space-y-2">
-                <p class="text-xl font-semibold text-green-600">€ {{ number_format($car->price, 2) }}</p>
+            <div class="space-y-2" x-data="
+            {
+            editOpen: false,
+            saved: false,
+            toggleEdit()
+            {
+                this.saved = false;
+                this.editOpen = !this.editOpen;
+                setTimeout(function() {document.getElementById('price').focus()},0);
+            }
+            }"
+                x-on:price-saved.window="saved = true; editOpen = false">
+                <div class="text-xl font-semibold text-green-600">
+                    @if (Auth::user() && $car->user->id == Auth::user()->id && !$car->sold_at)
+                    <button class="cursor-pointer text-gray-500 text-sm" @click="toggleEdit()">✎</button>
+                    @endif
+                    €
+                    <span x-show="!editOpen" id="pricedisplay">{{ number_format($car->price, 2, ',', '.') }}</span>
+                    <span x-cloak x-show="saved" class="ml-2 text-sm font-medium text-green-700">Saved</span>
+                    <div x-cloak x-show="editOpen" class="inline">
+                        <input class="rounded border border-black w-32 text-xl font-semibold text-green-600" wire:model="price" type="number" name="price" id="price" step="0.01">
+                        <button class="text-green-600 cursor-pointer" wire:click="changePrice()">✓</button>
+                        <button class="text-red-600 cursor-pointer" @click="toggleEdit()">✗</button>
+                    </div>
+                    @error('price')
+                    <p class="mt-1 text-sm font-medium text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
+
+
                 <p><strong>Kenteken:</strong> {{ preg_replace('/([a-zA-Z])(?=[0-9])|([0-9])(?=[a-zA-Z])/', '$1$2-', $car->license_plate) }}</p>
                 <p><strong>Kilometerstand:</strong> {{ number_format($car->mileage, 0, ',', '.') }} km</p>
                 <p><strong>Jaar van productie:</strong> {{ $car->production_year ?? '-' }}</p>
