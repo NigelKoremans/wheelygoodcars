@@ -11,8 +11,25 @@ new #[Title('Alle Auto\'s - Wheely Good Cars!')] class extends Component
 
     public function with(): array
     {
+        $offers = Car::whereNull("sold_at")->latest()->paginate(10);
+
+        $cars = $offers->getCollection()->values();
+        $featuredCarIds = [];
+
+        if ($cars->isNotEmpty()) {
+            $featuredCarIds[] = $cars->first()->id;
+
+            $middleIndex = intdiv($cars->count(), 2);
+            $middleCarId = $cars->get($middleIndex)?->id;
+
+            if ($middleCarId && !in_array($middleCarId, $featuredCarIds, true)) {
+                $featuredCarIds[] = $middleCarId;
+            }
+        }
+
         return [
-            'offers' => Car::whereNull("sold_at")->latest()->paginate(10),
+            'offers' => $offers,
+            'featuredCarIds' => $featuredCarIds,
         ];
     }
 };
