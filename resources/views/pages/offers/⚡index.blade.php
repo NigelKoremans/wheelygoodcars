@@ -25,7 +25,7 @@ new #[Title('Alle Auto\'s - Wheely Good Cars!')] class extends Component
             <livewire:car-grid-item :car="$car" :featured="in_array($car->id, $featuredCarIds)"/>
         @empty
         <div class="p-6 text-center text-gray-600">
-            <p class="text-lg font-medium">Er zijn nog geen auto's toegevoegd.</p>
+            <p class="text-lg font-medium">Er zijn nog geen auto's te koop.</p>
         </div>
         @endforelse
     </div>
